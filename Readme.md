@@ -9,3 +9,6 @@ Start page:
 
 Result:  
 ![Alt text](https://raw.githubusercontent.com/asstrix/files/main/pricemachine/result.png)  
+
+html file:  
+![Alt text](https://raw.githubusercontent.com/asstrix/files/main/pricemachine/html.png) 
