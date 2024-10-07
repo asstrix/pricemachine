@@ -92,14 +92,15 @@ class PriceMachine:
 		<!DOCTYPE html>
 		<html>
 		<head>
+  			<meta charset="UTF-8">
 			<title>Позиции продуктов</title>
 			<style>
-                table {width: 30%; border-collapse: collapse;}
-                th, td {padding: 8px; line-height: 0.5;}
-                th {text-align: center;}
-                td:nth-child(2) {text-align: left;}
-                td {text-align: center;}
-            </style>
+		                table {width: 30%; border-collapse: collapse;}
+		                th, td {padding: 8px; line-height: 0.5;}
+		                th {text-align: center;}
+		                td:nth-child(2) {text-align: left;}
+		                td {text-align: center;}
+            		</style>
 		</head>
 		<body>
 			<div>
