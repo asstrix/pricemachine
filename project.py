@@ -11,12 +11,13 @@ class PriceMachine:
 		self.path = Path(__file__).parent
 
 	def __str__(self):
+		# Clean console to not to clutter the output
 		if not self.result.empty:
-			if os.name == 'nt':
-				os.system('cls')
+			if os.name == 'nt': # windows
+				os.system('cls') # unix
 			else:
 				os.system('clear')
-			# Count max len of values to set len of header
+			# Aligning in console. Count max len of values to set len of header
 			col_widths = [max(len(str(val)) for val in self.result[col]) for col in self.result.columns]
 			col_widths = [max(len(col), width) for col, width in zip(self.result.columns, col_widths)]
 			header = self.result.columns[0].ljust(col_widths[0]) + "  " + "  ".join(
@@ -29,7 +30,7 @@ class PriceMachine:
 				)
 				print(row_str)
 		return ''
-
+	# Find files in the same directory with app 	
 	def load_prices(self):
 		keyword = 'price'
 		required_columns = [
@@ -43,6 +44,7 @@ class PriceMachine:
 				try:
 					df = pd.read_csv(file)
 					valid_columns = [col for col_list in required_columns for col in col_list]
+					# Drop empty columns
 					df = df[[col for col in df.columns if col in valid_columns]].dropna(axis=1, how='all')
 					rename_map = {}
 					for i in required_columns:
@@ -66,7 +68,8 @@ class PriceMachine:
 				except Exception as e:
 					print(f"Error processing file {file}: {e}")
 		return self.data
-
+		
+	# Find keyword in dataframes
 	def find_text(self, key_phrase):
 		if self.data.empty:
 			print("Data not loaded.")
@@ -81,7 +84,8 @@ class PriceMachine:
 		else:
 			print(f"No matches with '{key_phrase}' were found.")
 			return pd.DataFrame()
-
+	
+	# Export found data to html file
 	def export_to_html(self, fname='output.html'):
 		self.result = self.result.sort_values(by=self.data.columns[-1], ascending=True).reset_index(drop=True)
 		self.result = self.result.reset_index(drop=True)
